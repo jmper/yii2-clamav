@@ -1,0 +1,35 @@
+{
+  "name": "cacko/yii2-clamav",
+  "description": "A PHP interface to clamd / clamscan.",
+  "license": "MIT",
+  "type": "yii2-extension",
+  "authors": [
+    {
+      "name": "Vasil Anagnostos",
+      "email": "vasil.a@me.com"
+    },
+    {
+      "name": "cacko",
+      "email": "dev@cacko.net"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Cacko\\ClamAv\\": "src/"
+    }
+  },
+  "extra": {
+    "bootstrap": "Cacko\\ClamAv\\Bootstrap"
+  },
+  "require": {
+    "php": ">=7.3",
+    "ext-sockets": "*",
+    "yiisoft/yii2-bootstrap": "2.*"
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ]
+}
