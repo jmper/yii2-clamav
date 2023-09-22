@@ -49,7 +49,7 @@ class Socket extends Component implements SocketInterface
      */
     public function close()
     {
-        if (is_resource($this->socket)) {
+        if ($this->socketActive()) {
             socket_close($this->socket);
             $this->socket = null;
         }
@@ -117,7 +117,7 @@ class Socket extends Component implements SocketInterface
     public function receive($flags = MSG_WAITALL)
     {
         // $this->reconnect();
-        if (!is_resource($this->socket)) {
+        if (!$this->socketActive()) {
             throw new RuntimeException('Socket is currently closed');
         }
 
@@ -209,8 +209,13 @@ class Socket extends Component implements SocketInterface
      */
     protected function reconnect(): void
     {
-        if (!is_resource($this->socket)) {
+        if (!$this->socketActive()) {
             $this->connect();
         }
+    }
+
+    protected function socketActive(): bool
+    {
+        return is_resource($this->socket) || $this->socket instanceof \Socket;
     }
 }
